@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="POKEDEX.Views.DetallesPokemon"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:sharpnado="clr-namespace:Sharpnado.MaterialFrame;assembly=Sharpnado.MaterialFrame"
+             xmlns:vmpokemon="clr-namespace:POKEDEX.ViewModel.VMPokemon" x:DataType="vmpokemon:VMDetalles">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="1,0">
+                <GradientStop Color="{Binding ParametrosRecibe.BackgronColor}" Offset="0.1"/>
+                <GradientStop Color="{Binding ParametrosRecibe.PowerColor}" Offset="0.8"/>  
+            </LinearGradientBrush>
+        </Grid.Background>
+        <StackLayout>
+            <Image Source="https://png.pngtree.com/png-vector/20231019/ourmid/pngtree-the-gold-arrow-png-image-png-image_10276853.png" HeightRequest="70" HorizontalOptions="Start" Margin="10,20,0,0">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Volvercommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <!--<Label Text="{Binding ParametrosRecibe.IdPokemon}" TextColor="Black" FontSize="20" FontAttributes="Bold"/>-->
+            <Label Text="{Binding ParametrosRecibe.NmOrder}" FontSize="20" FontAttributes="Bold" TextColor="Black"/>
+            <Image Source="{Binding ParametrosRecibe.Icon}" HeightRequest="250"/>
+            <Label Text="{Binding ParametrosRecibe.Name}" FontSize="20" TextColor="Black" HorizontalOptions="Center"/>
+            <Grid RowDefinitions="auto,auto">
+                <sharpnado:MaterialFrame CornerRadius="15" MaterialBlurStyle="Light" MaterialTheme="AcrylicBlur" Grid.RowSpan="2"/>
+                <StackLayout Orientation="Horizontal" Margin="10,20,10,10">
+                    <StackLayout>
+                        <Label Text="{Binding ParametrosRecibe.Power}" FontSize="20" FontAttributes="Bold" TextColor="Black"/>
+                        <Label Text="Poder" TextColor="Black" HorizontalOptions="Center"/>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="CenterAndExpand">
+                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                            <BoxView HeightRequest="30" WidthRequest="30" BackgroundColor="{Binding ParametrosRecibe.BackgronColor}" CornerRadius="15" VerticalOptions="Center"/>
+                            <BoxView HeightRequest="30" WidthRequest="30" BackgroundColor="{Binding ParametrosRecibe.PowerColor}" CornerRadius="15" VerticalOptions="Center"/>
+                        </StackLayout>
+                        <Label Text="Colores" TextColor="Black" HorizontalOptions="Center"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="{Binding ParametrosRecibe.NmOrder}" FontSize="20" FontAttributes="Bold" TextColor="Black"/>
+                        <Label Text="Orden" TextColor="Black" HorizontalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+                <Image Source="https://goo.su/tnaGfo" Grid.Row="1"/>
+            </Grid>
+            <Frame CornerRadius="30" Margin="0,20,0,0" Padding="0" HeightRequest="65" HasShadow="False">
+                <Grid ColumnDefinitions="*,*" BackgroundColor="Red">
+                    <Button Text="Editar" BackgroundColor="Orange" CornerRadius="25" Margin="-5,0,-10,0" FontAttributes="Bold" Grid.Column="0" />
+                    <!--Command="{Binding Path=BindingContext.Detallescommand, Source={x:Reference Listas}}" CommandParameter="{Binding .}" MODIFICAR ESTO Y HACERLO CON UN COLLECTIONvIEW-->
+                    <!--Command="{Binding EditarPokemonCommand}"-->
+                    <Button Text="ELiminar" BackgroundColor="Red" CornerRadius="25" Margin="210,0,-200,0" FontAttributes="Bold" Command="{Binding EliminarCommand}" CommandParameter="{Binding ParametrosRecibe.NmOrder}"/>
+                    <!--Command="{Binding EliminarPokemonCommand}"-->
+                    <!--si no jala lo coloco en el grid de arriba-->
+                    <!--<Grid.GestureRecognizers>
+    <TapGestureRecognizer Command="{Binding Path=BindingContext.Detallescommand, Source={x:Reference Listas}}" CommandParameter="{Binding .}"/>
+</Grid.GestureRecognizers>-->
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </Grid>
+</ContentPage>
